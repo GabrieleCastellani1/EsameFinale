@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="create_table_film_001" author="gabriele">
+        <createTable tableName="film">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="pk_film"/>
+            </column>
+            <column name="titolo" type="VARCHAR(100)"/>
+            <column name="autore" type="VARCHAR(100)"/>
+            <column name="produttore" type="VARCHAR(100)"/>
+            <column name="genere" type="VARCHAR(100)"/>
+            <column name="etaMinima" type="BIGINT"/>
+            <column name="durata" type="BIGINT"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="autori"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="create_table_film_002" author="gabriele">
+        <addNotNullConstraint tableName="film" columnName="genere" columnDataType="VARCHAR(100)" />
+        <rollback>
+            <dropNotNullConstraint tableName="film" columnName="genere"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="create_table_film_003" author="gabriele">
+        <addNotNullConstraint tableName="film" columnName="etaMinima" columnDataType="VARCHAR(100)" />
+        <rollback>
+            <dropNotNullConstraint tableName="film" columnName="etaMinima"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

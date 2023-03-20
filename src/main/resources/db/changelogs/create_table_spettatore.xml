@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="create_table_spettatore_001" author="gabriele">
+        <createTable tableName="spettatore">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="pk_spettatore"/>
+            </column>
+            <column name="nome" type="VARCHAR(50)"/>
+            <column name="cognome" type="VARCHAR(50)"/>
+            <column name="dataDiNascita" type="DATE"/>
+            <column name="idBiglietto" type="BIGINT">
+                <constraints foreignKeyName="fk_biglietto" nullable="true" references="biglietto(id)" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_table_spettatore_002" author="gabriele">
+        <addNotNullConstraint tableName="spettatore" columnName="dataDiNascita" columnDataType="DATE" />
+        <rollback>
+            <dropNotNullConstraint tableName="spettatore" columnName="dataDiNascita"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

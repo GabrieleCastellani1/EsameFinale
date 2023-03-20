@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="create_table_sala_001" author="gabriele">
+        <createTable tableName="sala">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="pk_sala"/>
+            </column>
+            <column name="idFilm" type="BIGINT">
+                <constraints foreignKeyName="fk_film" nullable="false" references="film(id)" />
+            </column>
+            <column name="incasso" type="DOUBLE"/>
+            <column name="numMax" type="BIGINT"/>
+            <column name="currentNum" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_table_sala_002" author="gabriele">
+        <addNotNullConstraint tableName="sala" columnName="incasso" columnDataType="DOUBLE" />
+        <rollback>
+            <dropNotNullConstraint tableName="sala" columnName="incasso"/>
+        </rollback>
+    </changeSet>
+    <changeSet id="create_table_sala_003" author="gabriele">
+        <addNotNullConstraint tableName="sala" columnName="numMax" columnDataType="BIGINT" />
+        <rollback>
+            <dropNotNullConstraint tableName="sala" columnName="numMax"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="create_table_sala_004" author="gabriele">
+        <addNotNullConstraint tableName="sala" columnName="currentNum" columnDataType="BIGINT" />
+        <rollback>
+            <dropNotNullConstraint tableName="sala" columnName="currentNum"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

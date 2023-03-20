@@ -2,5 +2,8 @@
 <databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-
+    <include file="db/changelogs/create_table_film.xml"/>
+    <include file="db/changelogs/create_table_sala.xml"/>
+    <include file="db/changelogs/create_table_biglietto.xml"/>
+    <include file="db/changelogs/create_table_spettatore.xml"/>
 </databaseChangeLog>
