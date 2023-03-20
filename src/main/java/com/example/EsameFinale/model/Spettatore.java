@@ -23,6 +23,7 @@ public class Spettatore {
     private int id;
     private String nome;
     private String cognome;
+    @Column(name = "datadinascita")
     private Date dataDiNascita;
     @OneToOne
     @JoinColumn(name = "idBiglietto")

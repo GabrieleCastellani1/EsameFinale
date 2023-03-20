@@ -18,9 +18,11 @@ public class Sala {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @OneToOne
-    @JoinColumn(name = "idFilm")
+    @JoinColumn(name = "idfilm")
     private Film film;
     private Double incasso;
+    @Column(name = "nummax")
     private int numMax;
+    @Column(name = "currentnum")
     private int currentNum;
 }

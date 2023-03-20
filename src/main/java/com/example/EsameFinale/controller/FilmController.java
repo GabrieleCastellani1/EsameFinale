@@ -1,12 +1,8 @@
 package com.example.EsameFinale.controller;
 
-import com.example.EsameFinale.model.Biglietto;
 import com.example.EsameFinale.model.Film;
-import com.example.EsameFinale.model.Spettatore;
-import com.example.EsameFinale.model.request.BigliettoRequest;
 import com.example.EsameFinale.model.response.GenericResponse;
 import com.example.EsameFinale.service.FilmService;
-import com.example.EsameFinale.service.SpettatoreService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

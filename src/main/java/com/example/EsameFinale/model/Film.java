@@ -21,6 +21,7 @@ public class Film {
     private String autore;
     private String produttore;
     private String genere;
+    @Column(name = "etaminima")
     private int etaMinima;
     private int durata;
 }

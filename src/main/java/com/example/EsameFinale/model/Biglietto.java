@@ -20,5 +20,6 @@ public class Biglietto {
     private int id;
     private int numPosto;
     private Double prezzo;
+    @Column(name = "idsala")
     private int idSala;
 }
