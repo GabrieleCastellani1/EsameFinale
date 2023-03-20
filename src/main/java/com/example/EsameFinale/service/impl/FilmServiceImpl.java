@@ -1,30 +1,33 @@
 package com.example.EsameFinale.service.impl;
 
 import com.example.EsameFinale.model.Film;
-import com.example.EsameFinale.model.Sala;
 import com.example.EsameFinale.model.response.GenericResponse;
 import com.example.EsameFinale.repository.FilmRepository;
+import com.example.EsameFinale.service.FilmService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class FilmServiceImpl {
+public class FilmServiceImpl implements FilmService {
     private final FilmRepository filmRepository;
 
     public FilmServiceImpl(FilmRepository filmRepository) {
         this.filmRepository = filmRepository;
     }
 
+    @Override
     public Optional<Film> getById(int id){
         return filmRepository.findById(id);
     }
 
+    @Override
     public List<Film> getAll(){
         return filmRepository.findAll();
     }
 
+    @Override
     public Boolean deleteById(int id){
         if(getById(id).isPresent()){
             filmRepository.deleteById(id);
@@ -34,6 +37,7 @@ public class FilmServiceImpl {
         }
     }
 
+    @Override
     public Boolean deleteAll() {
         Boolean res = Boolean.TRUE;
         try {
@@ -44,6 +48,7 @@ public class FilmServiceImpl {
         return res;
     }
 
+    @Override
     public Film insert(String titolo, String autore, String produttore, String genere, int etaMinima, int durata){
         return filmRepository.save(Film.builder()
                 .titolo(titolo)
@@ -55,6 +60,7 @@ public class FilmServiceImpl {
                 .build());
     }
 
+    @Override
     public GenericResponse<Film> update(int id, String titolo, String autore, String produttore, String genere, int etaMinima, int durata){
         GenericResponse<Film> response;
         Optional<Film> film = getById(id);

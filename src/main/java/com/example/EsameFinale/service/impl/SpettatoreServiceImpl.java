@@ -1,17 +1,19 @@
 package com.example.EsameFinale.service.impl;
 
 import com.example.EsameFinale.model.Biglietto;
-import com.example.EsameFinale.model.Film;
 import com.example.EsameFinale.model.Spettatore;
 import com.example.EsameFinale.model.response.GenericResponse;
 import com.example.EsameFinale.repository.SpettatoreRepository;
 import com.example.EsameFinale.service.BigliettoService;
+import com.example.EsameFinale.service.SpettatoreService;
+import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
-public class SpettatoreServiceImpl {
+@Service
+public class SpettatoreServiceImpl implements SpettatoreService {
     private final SpettatoreRepository spettatoreRepository;
     private final BigliettoService bigliettoService;
 
@@ -20,14 +22,17 @@ public class SpettatoreServiceImpl {
         this.bigliettoService = bigliettoService;
     }
 
+    @Override
     public Optional<Spettatore> getById(int id){
         return spettatoreRepository.findById(id);
     }
 
+    @Override
     public List<Spettatore> getAll(){
         return spettatoreRepository.findAll();
     }
 
+    @Override
     public Spettatore insert(String nome, String cognome, Date dataDiNascita){
         return spettatoreRepository.save(Spettatore.builder()
                 .nome(nome)
@@ -36,6 +41,7 @@ public class SpettatoreServiceImpl {
                 .build());
     }
 
+    @Override
     public GenericResponse<Biglietto> compraBiglietto(int id, int numPosto, int idSala){
         Optional<Spettatore> spettatore = getById(id);
         if(spettatore.isPresent()){
@@ -47,6 +53,7 @@ public class SpettatoreServiceImpl {
         }
     }
 
+    @Override
     public Boolean deleteById(int id){
         if(getById(id).isPresent()){
             spettatoreRepository.deleteById(id);
@@ -56,6 +63,7 @@ public class SpettatoreServiceImpl {
         }
     }
 
+    @Override
     public Boolean deleteAll(){
         Boolean res = Boolean.TRUE;
         try {
